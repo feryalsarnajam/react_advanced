@@ -56,6 +56,7 @@ export const Form = ({ event, handelSubmit, action, handleCancel }) => {
     } else {
       const { name, value } = event.target;
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+
       setValue(formData.createdBy);
     }
   };
