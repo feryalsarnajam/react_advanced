@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -14,7 +15,7 @@ export const AddEventButton = () => {
                 color: "white",
               }}
               backgroundColor={"blue.200"}>
-              Add Event
+              <AddIcon /> &nbsp; Add Event
             </Button>
           </Link>
         </Box>

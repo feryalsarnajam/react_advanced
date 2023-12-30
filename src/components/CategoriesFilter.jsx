@@ -10,7 +10,6 @@ export const CategoriesFilter = ({
     <>
       <CheckboxGroup colorScheme='gray' borderRadius={"md"}>
         <Stack
-          spacing={[1, 5]}
           direction={["column", "row"]}
           borderRadius={"md"}
           backgroundColor={"gray.50"}
@@ -21,6 +20,9 @@ export const CategoriesFilter = ({
           {categories.map((categorie) => (
             <Checkbox
               type='checkbox'
+              // _checked={{
+              //   background: "blue.300",
+              // }}
               isChecked={selectedCategories.includes(categorie.id)}
               id={categorie.id}
               key={categorie.id}

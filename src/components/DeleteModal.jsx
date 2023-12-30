@@ -1,3 +1,4 @@
+import { DeleteIcon } from "@chakra-ui/icons";
 import {
   AlertDialog,
   AlertDialogBody,
@@ -24,7 +25,8 @@ export const DeleteModal = ({ title, deleteEvent }) => {
           color: "white",
         }}
         onClick={onOpen}>
-        Delete
+        <DeleteIcon />
+        &nbsp; Delete
       </Button>
 
       <AlertDialog

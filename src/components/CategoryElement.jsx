@@ -23,7 +23,7 @@ export function CategoryElement({ event }) {
   };
   return (
     <>
-      <HStack width={"100%"} spacing={2} margin={"3"}>
+      <HStack spacing={2} margin={"3"} justifyContent={"flex-end"}>
         {categoryArray(event).map((item, index) => (
           <Box
             key={index}

@@ -74,7 +74,6 @@ export const EventsPage = () => {
   return (
     <>
       <AddEventButton />
-
       <Heading
         fontStyle={"italic"}
         fontWeight={"bold"}
@@ -83,7 +82,6 @@ export const EventsPage = () => {
         color={"gray.500"}>
         {matchedEvents.length} Events
       </Heading>
-
       {matchedEvents.length > 0 && (
         <Flex
           backgroundColor={"gray.200"}
@@ -92,7 +90,7 @@ export const EventsPage = () => {
           gap={4}
           justifyContent={"center"}>
           {/* Search field */}
-          <Box>
+          <Box width={"25%"}>
             <Input
               onChange={handleChange}
               backgroundColor='gray.50'
@@ -102,7 +100,7 @@ export const EventsPage = () => {
           </Box>
 
           {/* Category Search field */}
-          <Box>
+          <Box width={"25%"}>
             <CategoriesFilter
               categories={categories}
               handleSelect={handleSelect}
@@ -111,7 +109,6 @@ export const EventsPage = () => {
           </Box>
         </Flex>
       )}
-
       <SimpleGrid padding={"5"} column={4} spacing={2} minChildWidth={250}>
         {matchedEvents.map((event) => (
           <Card
