@@ -14,9 +14,9 @@ export function CategoryElement({ event }) {
 
   const findColor = (id) => {
     if (id === 1) {
-      return "red.200";
+      return "green.200";
     } else if (id === 2) {
-      return "blue.200";
+      return "orange.200";
     } else {
       return "yellow.200";
     }
