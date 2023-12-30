@@ -17,6 +17,7 @@ import { EventContext } from "./Contexts";
 export const Form = ({ event, handelSubmit, action, handleCancel }) => {
   const { users, categories } = useContext(EventContext);
   const [value, setValue] = useState(-1);
+  //const [value, setValue] = useState("1");
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -38,6 +39,15 @@ export const Form = ({ event, handelSubmit, action, handleCancel }) => {
     handelSubmit(formData);
   };
 
+  const handelSelectUser = (event) => {
+    const { name, value } = event.target;
+    console.log({ name, value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: parseInt(value),
+    }));
+  };
+
   const handleChange = (event) => {
     if (event.target.name === "categorie") {
       let id = parseInt(event.target.id);
@@ -56,8 +66,6 @@ export const Form = ({ event, handelSubmit, action, handleCancel }) => {
     } else {
       const { name, value } = event.target;
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-
-      setValue(formData.createdBy);
     }
   };
 
@@ -124,7 +132,7 @@ export const Form = ({ event, handelSubmit, action, handleCancel }) => {
             borderRadius={"6px"}>
             <Text mb='8px'>User: </Text>
             <Select
-              onChange={handleChange}
+              onChange={handelSelectUser}
               value={value}
               name='createdBy'
               backgroundColor={"gray.50"}
