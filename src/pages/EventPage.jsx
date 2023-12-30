@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { Form } from "../components/Form";
 import { EventContext } from "../components/Contexts";
 import { CategoryElement } from "../components/CategoryElement";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { EditIcon } from "@chakra-ui/icons";
 
 export const loader = async ({ params }) => {
   const event = await fetch(`http://localhost:3000/events/${params.eventId}`);
