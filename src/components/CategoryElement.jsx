@@ -7,10 +7,9 @@ export function CategoryElement({ event }) {
 
   //categoryIds to catogorie.name
   function categoryArray(event) {
-    let result = event.categoryIds.map((id) =>
+    return event.categoryIds.map((id) =>
       categories.find((cat) => cat.id === id)
     );
-    return result;
   }
 
   const findColor = (id) => {
@@ -25,16 +24,16 @@ export function CategoryElement({ event }) {
   return (
     <>
       <HStack width={"100%"} spacing={2} margin={"3"}>
-        {categoryArray(event).map((item) => (
+        {categoryArray(event).map((item, index) => (
           <Box
-            key={item.id}
+            key={index}
             fontWeight={"semibold"}
             fontSize={"small"}
-            bg={findColor(item.id)}
+            bg={findColor(item?.id)}
             padding={"2"}
             borderRadius={"md"}
             textTransform={"capitalize"}>
-            {item.name}
+            {item?.name}
           </Box>
         ))}
       </HStack>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Container } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
@@ -9,47 +8,13 @@ export const AddEvent = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    image: "",
-    createdBy: Number,
-    location: "",
-    startTime: "",
-    endTime: "",
-    categoryIds: [],
-  });
-
-  //Add Data
-  const handleChange = (event) => {
-    if (event.target.name === "categorie") {
-      let id = parseInt(event.target.id);
-      if (!formData.categoryIds.includes(id)) {
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          ["categoryIds"]: [...prevFormData.categoryIds, id],
-        }));
-      } else {
-        let filtered = formData.categoryIds.filter((e) => e != id);
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          ["categoryIds"]: filtered,
-        }));
-      }
-    } else {
-      const { name, value } = event.target;
-      setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    }
-  };
-
   //Cancel Add data
   const handleCancel = () => {
     navigate(-1);
   };
 
   //Save after submit
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (formData) => {
     createEvent(formData);
   };
 
@@ -69,7 +34,7 @@ export const AddEvent = () => {
         duration: 3000,
         isClosable: true,
       });
-    } else if (response.status != 201) {
+    } else if (response.status !== 201) {
       toast({
         title: "Failed to create an event.",
         description: "Failed to create an event.",
@@ -78,8 +43,8 @@ export const AddEvent = () => {
         isClosable: true,
       });
     }
-    //let id = (await response.json()).id;
-    navigate(`/`);
+    let id = (await response.json()).id;
+    navigate(`/event/${id}`);
   };
 
   return (
@@ -91,9 +56,7 @@ export const AddEvent = () => {
           margin={"3"}
           backgroundColor={"gray.300"}>
           <Form
-            formData={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handelSubmit={handleSubmit}
             handleCancel={handleCancel}
             action={"Add"}
           />

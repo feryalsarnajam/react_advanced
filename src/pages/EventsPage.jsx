@@ -38,7 +38,7 @@ export const EventsPage = () => {
     let id = parseInt(event.target.id);
     if (selectedCategories.includes(id)) {
       setSelectedCategories(
-        selectedCategories.filter((element) => element != id)
+        selectedCategories.filter((element) => element !== id)
       );
     } else {
       // add selected id to the selected categories
@@ -54,7 +54,7 @@ export const EventsPage = () => {
     )
     .filter(
       (event) =>
-        selectedCategories.length == 0 ||
+        selectedCategories.length === 0 ||
         event.categoryIds.some((cat) => selectedCategories.includes(cat))
     );
 
@@ -84,31 +84,33 @@ export const EventsPage = () => {
         {matchedEvents.length} Events
       </Heading>
 
-      <Flex
-        backgroundColor={"gray.200"}
-        columns={2}
-        padding={"4"}
-        gap={4}
-        justifyContent={"center"}>
-        {/* Search field */}
-        <Box>
-          <Input
-            onChange={handleChange}
-            backgroundColor='gray.50'
-            placeholder='Search events'
-            focusBorderColor='blue.400'
-            _placeholder={{ color: "gray.300" }}></Input>
-        </Box>
+      {matchedEvents.length > 0 && (
+        <Flex
+          backgroundColor={"gray.200"}
+          columns={2}
+          padding={"4"}
+          gap={4}
+          justifyContent={"center"}>
+          {/* Search field */}
+          <Box>
+            <Input
+              onChange={handleChange}
+              backgroundColor='gray.50'
+              placeholder='Search events'
+              focusBorderColor='blue.400'
+              _placeholder={{ color: "gray.300" }}></Input>
+          </Box>
 
-        {/* Category Search field */}
-        <Box>
-          <CategoriesFilter
-            categories={categories}
-            handleSelect={handleSelect}
-            selectedCategories={selectedCategories}
-          />
-        </Box>
-      </Flex>
+          {/* Category Search field */}
+          <Box>
+            <CategoriesFilter
+              categories={categories}
+              handleSelect={handleSelect}
+              selectedCategories={selectedCategories}
+            />
+          </Box>
+        </Flex>
+      )}
 
       <SimpleGrid padding={"5"} column={4} spacing={2} minChildWidth={250}>
         {matchedEvents.map((event) => (

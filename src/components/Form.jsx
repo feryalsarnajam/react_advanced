@@ -11,17 +11,54 @@ import {
 
 import { CategoriesFilter } from "./CategoriesFilter";
 import { InputFormBox } from "./InputFormBox";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EventContext } from "./Contexts";
 
-export const Form = ({
-  formData,
-  handleChange,
-  handelSubmit,
-  action,
-  handleCancel,
-}) => {
+export const Form = ({ event, handelSubmit, action, handleCancel }) => {
   const { users, categories } = useContext(EventContext);
+  const [value, setValue] = useState(-1);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    image: "",
+    createdBy: Number,
+    location: "",
+    startTime: "",
+    endTime: "",
+    categoryIds: [],
+  });
+  useEffect(() => {
+    if (event) {
+      setFormData(event);
+      setValue(event.createdBy);
+    }
+  }, []);
+  const submit = (e) => {
+    e.preventDefault();
+    handelSubmit(formData);
+  };
+
+  const handleChange = (event) => {
+    if (event.target.name === "categorie") {
+      let id = parseInt(event.target.id);
+      if (!formData.categoryIds.includes(id)) {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          ["categoryIds"]: [...prevFormData.categoryIds, id],
+        }));
+      } else {
+        let filtered = formData.categoryIds.filter((e) => e != id);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          ["categoryIds"]: filtered,
+        }));
+      }
+    } else {
+      const { name, value } = event.target;
+      setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+      setValue(formData.createdBy);
+    }
+  };
 
   return (
     <>
@@ -34,7 +71,7 @@ export const Form = ({
           {action} {formData?.title}
         </Heading>
       </Flex>
-      <form onSubmit={handelSubmit}>
+      <form onSubmit={submit}>
         <SimpleGrid columns={1} spacingX='40px'>
           <InputFormBox
             value={formData?.title}
@@ -86,12 +123,12 @@ export const Form = ({
             borderRadius={"6px"}>
             <Text mb='8px'>User: </Text>
             <Select
+              onChange={handleChange}
+              value={value}
               name='createdBy'
               backgroundColor={"gray.50"}
-              onChange={handleChange}
               borderRadius={"md"}
               border={"1px"}
-              value={formData?.createdBy}
               borderColor={"gray.200"}
               size='sm'>
               <option key={-1}>Select User</option>

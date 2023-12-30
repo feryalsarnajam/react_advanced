@@ -30,8 +30,7 @@ export const EventPage = () => {
   const toast = useToast();
   const { event } = useLoaderData();
   const [edit, setEdit] = useState(false);
-  const [formData, setFormData] = useState(event);
-  const { data_options, users, categories } = useContext(EventContext);
+  const { data_options, users } = useContext(EventContext);
   const [user, setUser] = useState(null);
 
   //CreatedBy to user name & image
@@ -55,40 +54,14 @@ export const EventPage = () => {
 
   //edit button function
   const editEvent = () => {
-    setFormData(event);
     setEdit(true);
   };
 
-  //edit form en opslaan
-  const handleChange = (event) => {
-    event.preventDefault();
-    if (event.target.name === "categorie") {
-      let id = parseInt(event.target.id);
-      if (!formData.categoryIds.includes(id)) {
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          ["categoryIds"]: [...prevFormData.categoryIds, id],
-        }));
-      } else {
-        let filtered = formData.categoryIds.filter((e) => e != id);
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          ["categoryIds"]: filtered,
-        }));
-      }
-    } else {
-      const { name, value } = event.target;
-      setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (formData) => {
     updateEvent(formData);
   };
 
   const updateEvent = async (event) => {
-    event.createdBy = parseFloat(event.createdBy);
     const response = await fetch(`http://localhost:3000/events/${event.id}`, {
       method: "PUT",
       body: JSON.stringify(event),
@@ -97,13 +70,13 @@ export const EventPage = () => {
 
     if (response.status === 200) {
       toast({
-        title: "Event is created.",
+        title: "Event is updated.",
         description: "Even has been edit.",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-    } else if (response.status != 200) {
+    } else if (response.status !== 200) {
       toast({
         title: "Failed to create an event.",
         description: "Failed to edit an event.",
@@ -210,7 +183,11 @@ export const EventPage = () => {
             </CardBody>
 
             <CardFooter justifyContent={"flex-end"}>
-              <Flex display={"flex"} justifyContent={"flex-end"} padding={"2"} gap={2}>
+              <Flex
+                display={"flex"}
+                justifyContent={"flex-end"}
+                padding={"2"}
+                gap={2}>
                 <Box>
                   <Button
                     onClick={editEvent}
@@ -240,10 +217,9 @@ export const EventPage = () => {
             left={"20%"}
             margin={"3"}>
             <Form
-              formData={formData}
+              event={event}
               action={"Edit"}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
+              handelSubmit={handleSubmit}
               handleCancel={handleCancel}
             />
           </Card>

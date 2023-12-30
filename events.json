@@ -18,10 +18,12 @@
       "title": "Trampoline party",
       "description": "Bounce around with your friends",
       "image": "https://i.pinimg.com/736x/3d/2f/af/3d2faf4e3188d34a9fcdc00df59e77b0.jpg",
-      "categoryIds": [2],
+      "categoryIds": [
+        2
+      ],
       "location": "My back yard",
       "startTime": "2023-03-10T18:00",
-      "endTime": "2023-03-10T17:00:00.000Z"
+      "endTime": "2023-12-31T15:02"
     },
     {
       "id": 2,
@@ -29,21 +31,26 @@
       "title": "Laser Tag mania",
       "description": "Let's play laser tag!",
       "image": "https://www.ctvnews.ca/polopoly_fs/1.5118552.1600965663!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
-      "categoryIds": [2],
+      "categoryIds": [
+        2
+      ],
       "location": "Blinded by the Lights Laser Tag, 15 Main St.",
       "startTime": "2023-04-06T18:46",
       "endTime": "2023-04-06T17:46"
     },
     {
       "id": 3,
-      "createdBy": 2,
+      "createdBy": "1",
       "title": "Badminton game",
       "description": "Hit that shuttle!",
       "image": "https://s3.eu-west-2.amazonaws.com/ws-activestirling/production/Badminton/_1200x630_crop_center-center_none/Badminton-3.jpg",
-      "categoryIds": [1, 2],
+      "categoryIds": [
+        1,
+        2
+      ],
       "location": "The Park",
-      "startTime": "2023-03-15T12:00:00.000Z",
-      "endTime": "2023-03-15T13:30:00.000Z"
+      "startTime": "2023-12-16T15:25",
+      "endTime": "2023-12-31T15:25"
     },
     {
       "id": 4,
@@ -51,10 +58,38 @@
       "title": "Yoga",
       "description": "It's a bit of a stretch.",
       "image": "https://ymcasouthflorida.org/wp-content/uploads/2019/12/AA2I8910-scaled.jpg",
-      "categoryIds": [3],
+      "categoryIds": [
+        3
+      ],
       "location": "Shavasana Yoga School",
       "startTime": "2023-03-09T06:00:00.000Z",
       "endTime": "2023-03-09T07:00:00.000Z"
+    },
+    {
+      "title": "test 4",
+      "description": "dddd",
+      "image": "https://www.freecodecamp.org/news/content/images/size/w2000/2023/12/How-to-Innovate-as-Developer-Version-3-Cover.png",
+      "location": "2544mk",
+      "startTime": "2023-12-31T15:14",
+      "endTime": "2024-01-07T15:14",
+      "categoryIds": [
+        3,
+        2,
+        1
+      ],
+      "id": 5
+    },
+    {
+      "title": "test5",
+      "description": "fffff",
+      "image": "https://www.freecodecamp.org/news/content/images/size/w2000/2023/12/How-to-Innovate-as-Developer-Version-3-Cover.png",
+      "location": "2544mk",
+      "startTime": "2023-12-03T15:18",
+      "endTime": "2023-12-31T15:19",
+      "categoryIds": [
+        3
+      ],
+      "id": 6
     }
   ],
   "categories": [
