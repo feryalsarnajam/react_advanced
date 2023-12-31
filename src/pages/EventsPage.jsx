@@ -88,6 +88,7 @@ export const EventsPage = () => {
           columns={2}
           padding={"4"}
           gap={4}
+          alignItems={"center"}
           justifyContent={"center"}>
           {/* Search field */}
           <Box width={"25%"}>
@@ -109,61 +110,63 @@ export const EventsPage = () => {
           </Box>
         </Flex>
       )}
-      <SimpleGrid padding={"5"} column={4} spacing={2} minChildWidth={250}>
+      <SimpleGrid padding={"5"} columns={[2, null, 3]} spacing={2}>
         {matchedEvents.map((event) => (
-          <Card
-            key={event.id}
-            className='eventsPage'
-            backgroundColor={"gray.50"}
-            margin={"5"}
-            listStyleType={"none"}>
-            <Link to={`/event/${event.id}`}>
-              <CardHeader>
-                <Box color={"gray.400"}>
-                  {new Date(event.startTime).toLocaleDateString(
-                    "en-US",
-                    DATE_OPTIONS
-                  )}{" "}
-                  -{" "}
-                  {new Date(event.endTime).toLocaleDateString(
-                    "en-US",
-                    DATE_OPTIONS
-                  )}
-                </Box>
+          <Box key={event.id}>
+            <Card
+              className='eventsPage'
+              backgroundColor={"gray.50"}
+              margin={"5"}
+              listStyleType={"none"}>
+              <Link to={`/event/${event.id}`}>
+                <CardHeader>
+                  <Box color={"gray.400"}>
+                    {new Date(event.startTime).toLocaleDateString(
+                      "en-US",
+                      DATE_OPTIONS
+                    )}{" "}
+                    -{" "}
+                    {new Date(event.endTime).toLocaleDateString(
+                      "en-US",
+                      DATE_OPTIONS
+                    )}
+                  </Box>
 
-                <Box
-                  marginBottom={"5"}
-                  marginTop={"5"}
-                  fontSize={"x-large"}
-                  fontWeight={"bold"}>
-                  {event.title}
-                </Box>
-              </CardHeader>
+                  <Box
+                    marginBottom={"5"}
+                    marginTop={"5"}
+                    fontSize={"x-large"}
+                    fontWeight={"bold"}>
+                    {event.title}
+                  </Box>
+                </CardHeader>
 
-              <CardBody>
-                <Box fontSize={"md"} marginBottom={"3"}>
-                  {shortDescription(event.description)}
-                </Box>
+                <CardBody>
+                  <Box fontSize={"md"} marginBottom={"3"}>
+                    {shortDescription(event.description)}
+                  </Box>
 
-                <CategoryElement event={event} />
-              </CardBody>
+                  <CategoryElement event={event} />
+                </CardBody>
 
-              <CardFooter padding={0}>
-                <Box width={"100%"} height={"250px"} overflow={"hidden"}>
-                  <Image
-                    objectFit='cover'
-                    objectPosition={"center"}
-                    height={"100%"}
-                    bottom={0}
-                    src={event.image}
-                    alt='Image'
-                    borderBottomLeftRadius='md'
-                    borderBottomRightRadius='md'
-                  />
-                </Box>
-              </CardFooter>
-            </Link>
-          </Card>
+                <CardFooter padding={0}>
+                  <Box width={"100%"} height={"250px"} overflow={"hidden"}>
+                    <Image
+                      objectFit='cover'
+                      objectPosition={"center"}
+                      height={"100%"}
+                      width={"100%"}
+                      bottom={0}
+                      src={event.image}
+                      alt='Image'
+                      borderBottomLeftRadius='md'
+                      borderBottomRightRadius='md'
+                    />
+                  </Box>
+                </CardFooter>
+              </Link>
+            </Card>
+          </Box>
         ))}
       </SimpleGrid>
     </>

@@ -1,4 +1,8 @@
-import { Checkbox, CheckboxGroup, Stack } from "@chakra-ui/react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  Stack,
+} from "@chakra-ui/react";
 import React from "react";
 
 export const CategoriesFilter = ({
